@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linearer Abschreibungsrechner</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Lineare Abschreibungsrechner</h1>
+        <form>
+            <div class="form-group">
+                <label for="idAnschaffungswert">Anschaffungswert:</label>
+                <input id="idAnschaffungswert" class="form-control" type="number" value="150000" min="1">
+                <small class="form-text text-muted">in Euro</small>
+            </div>
+            <div class="form-group">
+                <label for="idNutzungsdauer">Nutzungsdauer:</label>
+                <input id="idNutzungsdauer" class="form-control" type="number" value="6" min="1">
+                <small class="form-text text-muted">in Jahren</small>
+            </div>
+            <button class="btn btn-primary" type="button" onclick="fBerechne()">Berechnen</button>
+        </form>
+        </br>
+        <div id="idAusgabe">
+        
+        </div>
+    </div>
+    <script>
+   
+        function fBerechne() {
+            
+            var vAusgabe= '<table class="table table-bordered"><thead><tr><th>Nutzungsjahr</th><th>Abschreibungswert</th><th>Restwert</th></tr></thead><tbody>'; 
+
+           // Erweitere hier das Programm
+
+            var vAnschaffungswert = document.getElementById("idAnschaffungswert").value;
+            var vNutzungsdauer = document.getElementById("idNutzungsdauer").value;
+            var vAbschreibungswert = vAnschaffungswert / vNutzungsdauer;
+            var vRestwert = vAnschaffungswert;
+
+            var vJahr;
+            
+            for (vJahr = 1; vJahr <= vNutzungsdauer; vJahr++) {
+                
+                vRestwert = vRestwert - vAbschreibungswert;
+                vAusgabe = vAusgabe + "<tr><td>" + vJahr + "</td><td>" + vAbschreibungswert.toFixed(2) + " €</td><td>" + vRestwert.toFixed(2) + " €</td></tr>";
+            
+            }
+
+            vAusgabe = vAusgabe +  '</tbody></table>';
+            document.getElementById("idAusgabe").innerHTML = vAusgabe;
+        }
+    </script>
+</body>
+</html>

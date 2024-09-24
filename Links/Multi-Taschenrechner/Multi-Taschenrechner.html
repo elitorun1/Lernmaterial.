@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Multi-Taschenrechner</title>
+    
+<script>
+
+    
+    "use strict"
+
+    function fAdd() {
+
+        var v1Zahl = parseFloat (document.getElementById("id1Zahl").value);
+        var v2Zahl = parseFloat (document.getElementById("id2Zahl").value);
+
+        var vErgebnis
+        
+        vErgebnis = v1Zahl + v2Zahl;
+
+        document.getElementById("idErgebnis").innerHTML = vErgebnis;
+
+    }
+
+
+    function fSub() {
+
+        var v1Zahl = document.getElementById("id1Zahl").value;
+        var v2Zahl = document.getElementById("id2Zahl").value;
+
+        var vErgebnis
+        vErgebnis = v1Zahl - v2Zahl;
+
+        document.getElementById("idErgebnis").innerHTML = vErgebnis;
+
+    }
+
+    function fMul() {
+        var v1Zahl = document.getElementById("id1Zahl").value;
+        var v2Zahl = document.getElementById("id2Zahl").value;
+
+        var vErgebnis
+        vErgebnis = v1Zahl * v2Zahl;
+
+        document.getElementById("idErgebnis").innerHTML = vErgebnis;
+        
+    }
+
+    function fDiv() {
+        var v1Zahl = document.getElementById("id1Zahl").value;
+        var v2Zahl = document.getElementById("id2Zahl").value;
+
+        var vErgebnis
+        vErgebnis = v1Zahl / v2Zahl;
+
+        if (v2Zahl == 0 ) {
+            vErgebnis = "Keine Division durch 0"
+        }
+
+        document.getElementById("idErgebnis").innerHTML = vErgebnis;
+    }
+
+    function fMod() {
+        var v1Zahl = document.getElementById("id1Zahl").value;
+        var v2Zahl = document.getElementById("id2Zahl").value;
+    
+
+        var vErgebnis
+        vErgebnis = v1Zahl % v2Zahl;
+
+        if (v2Zahl == 0) {
+            vErgebnis = "Keine Modulo mit 0 Möglich"
+        }
+
+        document.getElementById("idErgebnis").innerHTML = vErgebnis;
+
+    }
+
+    function fWur() {
+        var v1Zahl = parseFloat(document.getElementById("id1Zahl").value);
+
+        var vErgebnis
+        vErgebnis = Math.sqrt(v1Zahl);
+
+        document.getElementById("idErgebnis").innerHTML = vErgebnis;
+
+    }
+
+</script>
+</head>
+<body>
+
+    <h>Multi-Taschenrechner</h> <br><br>
+    
+    <input id="id1Zahl" type="text" value="10">
+    <input id="id2Zahl" type="text" value="5"><br><br>
+
+    <div id="idErgebnis"></div> <br>
+
+    <button type="button" class="btn btn-success" onclick="fAdd();">Addition</button><br>
+    <button type="button" class="btn btn-primary" onclick="fSub();">Subtraktion</button><br>
+    <button type="button" class="btn btn-info" onclick="fMul();">Multiplikation</button><br>
+    <button type="button" class="btn btn-warning" onclick="fDiv();">Division</button><br>
+    <button type="button" class="btn btn-danger" onclick="fMod();">Modulo</button><br>
+    <button type="button" class="btn btn-dark" onclick="fWur();">Wurzel</button><br>
+
+
+</body>
+</html>

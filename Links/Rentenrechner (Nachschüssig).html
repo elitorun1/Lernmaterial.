@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nachschüssiger Rentenrechner</title>
+    <style>
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: right;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Nachschüssiger Rentenrechner</h1>
+
+    <label for="rente">Jährliche Rente:</label>
+    <input type="number" id="rente" value="500"><br><br>
+
+    <label for="zins">Jährlicher Zinssatz (%):</label>
+    <input type="number" id="zins" value="2"><br><br>
+
+    <label for="laufzeit">Laufzeit (Jahre):</label>
+    <input type="number" id="laufzeit" value="5"><br><br>
+
+    <button onclick="berechneRente()">Berechnen</button>
+
+    <div id="ausgabe"></div>
+
+    <script>
+        function berechneRente() {
+            var vJahr = parseInt(document.getElementById("laufzeit").value);
+            var vRente = parseFloat(document.getElementById("rente").value);
+            var vZins = parseFloat(document.getElementById("zins").value);
+
+            var vAusgabe = '<table><thead><tr><th>Jahr</th><th>Rj</th><th>Zj</th><th>r</th><th>Rj + 1</th></tr></thead><tbody>';
+
+            var vRj = 0; 
+
+            for (var i = 1; i <= vJahr; i++) {
+                var vRjPlus1 = vRj + vRente; 
+                var vZj = vRjPlus1 * (vZins / 100); 
+                var r = vRente; 
+                vRj = vRjPlus1 + vZj;
+      
+                vAusgabe += '<tr><td>' + i + '</td><td>' + vRjPlus1.toFixed(2) + '</td><td>' + vZj.toFixed(2) + '</td><td>' + r.toFixed(2) + '</td><td>' + vRj.toFixed(2) + '</td></tr>';
+            }
+			
+			
+			
+
+            vAusgabe += '</tbody></table>';
+            document.getElementById('ausgabe').innerHTML = vAusgabe;
+        }
+    </script>
+</body>
+</html>

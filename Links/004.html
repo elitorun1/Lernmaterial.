@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tilgungsplan</title>
+    <meta charset="utf-8">
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container {
+            margin-top: 20px;
+        }
+
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: right;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+  
+    </style>
+    <script>
+        function tilgungsplan() {
+            var vKreditbetrag = parseInt(document.getElementById("ID_Kreditsumme").value);
+            var vLaufzeit = parseInt(document.getElementById("ID_Laufzeit").value);
+            var vZinssatz = parseInt(document.getElementById("ID_Zinssatz").value);
+
+            var vAusgabe = '<table><thead><tr><th>Jahr</th><th>Schuld in €</th><th>Zinsen in €</th><th>Annuität in €</th><th>Tilgung in €</th><th>Restschuld in €</th></tr></thead><tbody>';
+
+            var vZinsen = vKreditbetrag * vZinssatz / 100;
+            var vAnnuität = (vKreditbetrag * (vZinssatz * (1 + vZinssatz) ));
+            var vTilgung = vAnnuität - vZinsen;
+            var vRestschuld = vKreditbetrag - vTilgung;
+			
+                vAusgabe += '<tr><td>' + vLaufzeit + '</td><td>' + vKreditbetrag + '</td><td>' + vZinsen + '</td><td>' + vAnnuität + '</td><td>' + vTilgung + '</td><td>' + vRestschuld + '</td></tr>';
+			
+			
+			
+			
+			vAusgabe += '</tbody></table>';
+            document.getElementById("ID_Output").innerHTML = vAusgabe;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Tilgungsplan</h1>
+        <div class="form-group">
+            <label for="ID_Kreditsumme">Kreditbetrag:</label>
+            <input type="text" id="ID_Kreditsumme" class="form-control" value="400000">
+        </div>
+        <div class="form-group">
+            <label for="ID_Laufzeit">Laufzeit (Jahre):</label>
+            <input type="text" id="ID_Laufzeit" class="form-control" value="20">
+        </div>
+        <div class="form-group">
+            <label for="ID_Zinssatz">Zinssatz (%):</label>
+            <input type="text" id="ID_Zinssatz" class="form-control" value="5">
+        </div>
+        <button class="btn btn-primary" onClick="tilgungsplan();">Berechne</button>
+        <div id="ID_Output" class="mt-4"></div>
+    </div>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
